@@ -1,6 +1,6 @@
 package sml
 
-class MultInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int) extends Instruction(label, op) {
+class MulInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int) extends Instruction(label, op) {
 
   override def execute(m: Machine) {
     val value1 = m.regs(op1)
@@ -13,7 +13,7 @@ class MultInstruction(label: String, op: String, val result: Int, val op1: Int, 
   }
 }
 
-object MultInstruction {
+object MulInstruction {
   def apply(label: String, result: Int, op1: Int, op2: Int) =
-    new MultInstruction(label, "mult", result, op1, op2)
+    new MulInstruction(label, "mul", result, op1, op2)
 }
