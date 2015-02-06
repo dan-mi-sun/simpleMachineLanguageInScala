@@ -12,6 +12,6 @@ class OutInstruction(label: String, op: String, val regout: Int) extends Instruc
 }
 
 object OutInstruction {
-  def apply(label: String, result: Int, op1: Int, op2: Int) =
-    new OutInstruction(label, "out", result, op1, op2)
+  def apply(label: String, regout: Int) =
+    new OutInstruction(label, "out", regout)
 }
