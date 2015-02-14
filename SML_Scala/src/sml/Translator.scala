@@ -1,12 +1,13 @@
 package sml
 
 class Translator(fileName: String) {
-  private final val ADD = "add"
-  private final val LIN = "lin"
-  private final val DIV = "div"
-  private final val MUL = "mul"
-  private final val SUB = "sub"
-  private final val OUT = "out"
+  /* private final val ADD = "add" */
+  /* private final val LIN = "lin" */
+  /* private final val DIV = "div" */
+  /* private final val MUL = "mul" */
+  /* private final val SUB = "sub" */
+  /* private final val OUT = "out" */
+  import scala.collection.mutable.ListBuffer
 
   def readAndTranslate(m: Machine): Machine = {
     var labels = m.labels
@@ -16,22 +17,15 @@ class Translator(fileName: String) {
     for (line <- lines) {
       var fields = line.split(" ")
       if (fields.length > 0) {
-        labels.add(fields(0))
-        fields(1) match {
-          case ADD =>
-            program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case LIN =>
-            program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
-          case DIV =>
-            program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case MUL =>
-            program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case SUB =>
-            program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case OUT =>
-            program = program :+ OutInstruction(fields(0), fields(2).toInt)
-          case x =>
-            println(s"Unknown instruction $x")
+        try {
+          val instructionClass = Class.forName("sml." + fields(1).capitalize + "Instruction")
+          val rtimeUniverse = scala.reflect.runtime.universe
+          val rtimeMirror = rtimeUniverse.runtimeMirror(getClass.getClassLoader)
+          val clSymbol = rtimeMirror.classSymbol(instructionClass)
+          val clMirror = rtimeMirror.reflectClass(clSymbol)
+          /* TODO: continue to use http://docs.scala-lang.org/overviews/reflection/overview.html */
+          /* run through rest of relection */
+          }
         }
       }
     }
