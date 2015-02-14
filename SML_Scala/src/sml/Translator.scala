@@ -19,12 +19,10 @@ class Translator(fileName: String) {
       if (fields.length > 0) {
         try {
           val instructionClass = Class.forName("sml." + fields(1).capitalize + "Instruction")
-          val rtimeUniverse = scala.reflect.runtime.universe
-          val rtimeMirror = rtimeUniverse.runtimeMirror(getClass.getClassLoader)
-          val clSymbol = rtimeMirror.classSymbol(instructionClass)
-          val clMirror = rtimeMirror.reflectClass(clSymbol)
-          /* TODO: continue to use http://docs.scala-lang.org/overviews/reflection/overview.html */
-          /* run through rest of relection */
+          val runtimeUniverse = scala.reflect.runtime.universe
+          val runtimeMirror = runtimeUniverse.runtimeMirror(getClass.getClassLoader)
+          val classSymbol = runtimeMirror.classSymbol(instructionClass)
+          val classMirror = runtimeMirror.reflectClass(classSymbol)
           }
         }
       }
