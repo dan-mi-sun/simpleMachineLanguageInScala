@@ -1,3 +1,5 @@
+package sml_tests
+
 import org.scalatest._
 
 class SmlSpecs extends FlatSpec with Matchers {
