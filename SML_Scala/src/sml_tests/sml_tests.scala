@@ -1,6 +1,8 @@
 package sml_tests
 
 import org.scalatest._
+// have run out of time to fully implement these now
+// will continue to figure out how to implement
 
 class SmlSpecs extends FlatSpec with Matchers {
 //instantiate class object here
