@@ -6,6 +6,7 @@ class BnzInstruction(label: String, op: String, val opreg: Int, val destination:
     val value = m.regs(opreg)
     val nextStatement = m.labels.labels.indexOf(destination)
     if ( value != 0 ) m.execute(nextStatement)
+      /* need to input methods to find the next labelled statement so that it can execute */
   }
 
   override def toString(): String = {
